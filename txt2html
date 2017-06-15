@@ -1,0 +1,59 @@
+#!/bin/bash
+# 
+YOUR_DIR="/var/www/html/listák"					# This is the folder where convert all file.
+OLD_PWD=$PWD							# Last visited folder. (Where I started the program.)
+cd "$YOUR_DIR"							# Jumping to the workind folder. (YOUR_DIR)
+#
+head="
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+"								# html HEAD part
+p1="<p>"							# html paragraph begin part
+p2="</p>"							# html paragraph end part
+t="
+</body>
+
+</html>
+"								# html tail part
+#
+i=0
+for file in *
+do
+    if [[ -f $file ]]; then
+        array[$i]=$file 					# Filling the array with file names.
+        i=$(($i+1))
+    fi
+done
+# 
+count=0
+while [ "x${array[count]}" != "x" ] 				# Run as many files as you have in the directory.
+do
+   fname=${array[count]} 					# fname = filename from array
+   echo " $fname convert file to html format."			# Shows which file is being converted at this time.
+   line_in_fname=$(cat $YOUR_DIR/$fname | wc -l) 		# How many rows are in a file.
+   echo "$head" > $YOUR_DIR/html/$fname.html 			# The HTML file will begin to put together. This is the html HEAD part.
+   count2=0
+   while [ $line_in_fname != $count2 ]
+   do
+      row=$(head $YOUR_DIR/$fname -n $count2 | tail -n 1)	# Put together a file line by line .
+      echo "$p1" >> $YOUR_DIR/html/$fname.html			# Insert paragraph begin part.
+      echo "$row" >> $YOUR_DIR/html/$fname.html			# Insert next row.
+      echo "$p2" >> $YOUR_DIR/html/$fname.html			# Insert paragraph end part.
+      count2=$(( $count2 + 1 ))
+   done
+   count=$(( $count + 1 ))
+   last_row=$(tail $YOUR_DIR/$fname -n 1)			# Declarate last_row variable.
+   echo "$p1" >> $YOUR_DIR/html/$fname.html			# Insert paragraph begin part.
+   echo "$last_row" >> $YOUR_DIR/html/$fname.html		# Insert the last row, because we started counting from zero.
+   echo "$p2" >> $YOUR_DIR/html/$fname.html			# Insert paragraph end part.
+   echo "$t" >> $YOUR_DIR/html/$fname.html			# This is the html tail part.
+done
+cd "$OLD_PWD"							# Jumpind to the last visited folder.
+echo ""
+echo " $count txt file has been converted to html format."
+echo ""
