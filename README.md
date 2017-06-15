@@ -2,8 +2,8 @@
 
 This little script convert all txt file to html in a working folder.
 
-### txt2html 
-Note:
+### Note
+
 The program assumes you have a "YOUR_FOLDER/html" directory.
 
 #### Installation
