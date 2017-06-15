@@ -1,6 +1,6 @@
 #!/bin/bash
 # 
-YOUR_DIR="/var/www/html/listák"					# This is the folder where convert all file.
+YOUR_DIR="/var/www/html/list"					# This is the folder where convert all file.
 OLD_PWD=$PWD							# Last visited folder. (Where I started the program.)
 cd "$YOUR_DIR"							# Jumping to the workind folder. (YOUR_DIR)
 #
