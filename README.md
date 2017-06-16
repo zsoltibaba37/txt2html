@@ -8,7 +8,7 @@ The program assumes you have a "YOUR_FOLDER/html" directory.
 
 #### Installation
 No need install this script.
-#### Fájlok
+#### Files
 txt2html
 
 #### How to execute the script
