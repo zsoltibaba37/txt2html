@@ -1,8 +1,9 @@
 #!/bin/bash
 # 
-YOUR_DIR="/var/www/html/list"					# This is the folder where convert all file.
-OLD_PWD=$PWD							# Last visited folder. (Where I started the program.)
-cd "$YOUR_DIR"							# Jumping to the workind folder. (YOUR_DIR)
+YOUR_DIR=$PWD
+#YOUR_DIR="/var/www/html/list"					# This is the folder where convert all file.
+#OLD_PWD=$PWD							# Last visited folder. (Where I started the program.)
+# cd "$YOUR_DIR"							# Jumping to the workind folder. (YOUR_DIR)
 #
 head="
  <!DOCTYPE html>
@@ -13,8 +14,8 @@ head="
 
 <body>
 "								# html HEAD part
-p1="<p>"							# html paragraph begin part
-p2="</p>"							# html paragraph end part
+p1="<p><pre>"							# html paragraph begin part
+p2="</pre></p>"							# html paragraph end part
 t="
 </body>
 
@@ -53,7 +54,7 @@ do
    echo "$p2" >> $YOUR_DIR/html/$fname.html			# Insert paragraph end part.
    echo "$t" >> $YOUR_DIR/html/$fname.html			# This is the html tail part.
 done
-cd "$OLD_PWD"							# Jumpind to the last visited folder.
+# cd "$OLD_PWD"							# Jumpind to the last visited folder.
 echo ""
 echo " $count txt file has been converted to html format."
 echo ""
