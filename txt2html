@@ -35,7 +35,7 @@ count=0
 while [ "x${array[count]}" != "x" ] 				# Run as many files as you have in the directory.
 do
    fname=${array[count]} 					# fname = filename from array
-   echo " $fname convert file to html format."			# Shows which file is being converted at this time.
+   echo " $fname file convert to html format."			# Shows which file is being converted at this time.
    line_in_fname=$(cat $YOUR_DIR/$fname | wc -l) 		# How many rows are in a file.
    echo "$head" > $YOUR_DIR/$fname.html 			# The HTML file will begin to put together. This is the html HEAD part.
    count2=0
