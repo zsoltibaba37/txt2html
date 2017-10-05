@@ -23,7 +23,7 @@ t="
 "								# html tail part
 #
 i=0
-for file in *
+for file in *.txt
 do
     if [[ -f $file ]]; then
         array[$i]=$file 					# Filling the array with file names.
